@@ -3,7 +3,7 @@
 This project is to provide a basic greeting to the world. It also set up source control for future assignments.
 
 
-[Hello World Demo](www.youtube.com)
+[Hello World Demo](https://www.youtube.com)
 
 # Development Environment
 
