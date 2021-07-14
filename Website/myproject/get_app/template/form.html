@@ -5,10 +5,13 @@
 {% block content_block %}
 <div class="form">
     <form>
-        
+        <label for='platin'>Pig Latin</label>
+        <input type="text" id='platin' name='platin'> <br>
+        <input type="submit" id="submit" name='submit' value='Submit'><br>
     </form>
+
 </div>
 <div class="container">
-    <p>{{number}}</p>
+    <p> {{formAnswer}} </p>
 </div>
 {% endblock %}
