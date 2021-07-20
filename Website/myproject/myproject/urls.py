@@ -21,5 +21,6 @@ from get_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', views.hello, name='hello'),
-    path('form/', views.platinPage, name='form')
+    path('pform/', views.platinPage, name='pform'),
+    path('eform/', views.englishPage, name='eform')
 ]

@@ -1,0 +1,17 @@
+
+
+
+{% extends 'base.html' %}
+{% block content_block %}
+<div class="form">  
+    <h4>English</h4>
+    <form method="POST">
+        {% csrf_token %}
+        <label for='platin'>English</label> <br>
+        <input type="text" id='english' name="english" value="{{ platin.text }}"> <br>
+        <input type="submit" id="submit" name='submit' value='Submit'><br>
+    </form>
+    <h4>Translation</h4>
+    <p> {{ pvalue }} </p>
+</div>
+{% endblock %}
