@@ -8,7 +8,7 @@ The software provides these basic functions:
 - Add Rows
 - Delete Rows
 
-This will be the basics for a multi-relational database. The software will carry over except for the many to many relationships.
+This will be the basics for a multi-relational database. The software will carry over except for the many-to-many relationships.
 
 
 [Software Demo Video](https://youtu.be/bPP1E2cO5jAe)
