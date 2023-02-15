@@ -1,6 +1,6 @@
 # Overview
 
-I have worked with several databases, but I believed a small data mart fits the needs for specific processes, so I did this project to increase my learning.
+I have worked with several databases, but I believed a small data mart fits the needs of specific processes, so I did this project to increase my learning.
 
 The software provides these basic functions:
 - Display Table
@@ -21,8 +21,6 @@ This will be the basics for a multi-relational database. The software will carry
 
 
 # Useful Websites
-
-{Make a list of websites that you found helpful in this project}
 * [Stack Overflow](http://stackoverflow.com/)
 * [Python sqlite3](https://docs.python.org/3/library/sqlite3.html)
 
