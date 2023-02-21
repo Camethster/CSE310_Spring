@@ -15,6 +15,8 @@ Lets get down into the basics of how this is setup.
 
 Popular sellers on the platform can recieve what is called a traffic report. It is given in csv and when read into pandas reads the following columns
 
+There are several problems here when we clean data for a machine. While some of these are for optimization others are necessary for the machine to learn and provide a reasonable inference.
+
 
 <dl>
     <dt>Listing title (obj)</dt>
@@ -72,23 +74,30 @@ Popular sellers on the platform can recieve what is called a traffic report. It 
     <dd>A random column. Probably some number it has on the side of the sheet</dd>
 </dl>
 
-There are several problems here when we clean data for a machine. While some of these are for optimization others are necessary for the machine to learn and provide a reasonable inference.
+## Shape
 
-# Nulls
-There are a few ways to handle nulls. The article ["A Comprehensive Guide to Data Preprocessing"](https://neptune.ai/blog/data-preprocessing-guide) by Samadrita Ghosh published January 27th of 2023 goes into great detail about the ways we can clean data for the machine.
+Using what we know from the data we are using their are 24 columns and 1560 rows in the data. For training data this is a pretty small dataset. Most AI have closer to 10,000 or 100,000 rows. 
 
-# Scaling
-
-# Handling Outliers
-
-# Encoding
-
-# Dimensionality Reduction (Making Our Dataset Smaller)
-## This can also be called Feature Selection
-
-Using what we know from the data we are using the 
+We used random sampling to increase our AI's ability to learn. Instead of the orginal 1560 rows there are going to be over 200,000 rows to work with. This is done by copying samples from the previous data set at random to increase the amount of training data to learn from. 
 
 
+## Nulls
+There are a few ways to handle nulls. The article ["A Comprehensive Guide to Data Preprocessing"](https://neptune.ai/blog/data-preprocessing-guide) by Samadrita Ghosh published January 27th of 2023 goes into great detail about the ways we can clean data for the machine. We are going to do removal because there are only 35 rows that contain dangerous nulls. 
+
+Handling Outliers will also be taken care by removing nulls. Most of the outliers in this dataset are outliers because they have null values. Those with nulls are going to be removed. Imputing values would cause more harm than good in the model.
+
+## Encoding
+
+The only encoding needed for this project is going to be for the column "Current promoted listing status" whose values are logistical instead of numerical. The other columns that had potential are going to be removed in dimesionality reduction.
+
+The one-hot encoding method is going to be used here. This method makes a unique column where a boolean which is a true or false denoted by a 1 for true or a 0 for false. This makes the column numeric instead of a column with text.
+
+## Dimensionality Reduction (Making Our Dataset Smaller)
+### This can also be called Feature Selection
+
+# Model Selection
+
+# Performance
 
 # Video
 
@@ -96,9 +105,14 @@ Using what we know from the data we are using the
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
-
-{Describe the programming language that you used}
+Visual Studio Code
+Python 3
+Pandas
+Numpy
+Sklearn
+Altair
+Imblearn
+Pickle
 
 # Useful Websites
 

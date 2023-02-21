@@ -11,7 +11,7 @@ import pickle
 # %%
 # Got to read in data and clean it
 # First six rows are user information we want to exclude that. It also doesn't include headings
-df = pd.read_csv("C:\git\Portfolio\ML projects\eBay-ListingsTrafficReport-Feb-21-2023-10_57_28-0700-1291997234.csv",skiprows=5)
+df = pd.read_csv("C:\git\Portfolio\ML projects\eBay-ListingsTrafficReport-Feb-06-2023-13_12_40-0700-1180243584 copy.csv",skiprows=5)
 
 # %%
 # We may also want to encode data types into our data to make it more numeric which is what the computer likes.
@@ -109,12 +109,47 @@ regression = feature_selection.r_regression(XNorm,y)
 oversample = RandomOverSampler()
 X, y = oversample.fit_resample(X,y)
 XNorm = scaler.transform(X)
+normRegression = feature_selection.r_regression(XNorm,y)
 regression = feature_selection.r_regression(X,y)
 # %%
 # Time to train
-rgr = svm.SVC(kernel='rbf', C=1).fit(X,y)
-
+XTrain, XTest, yTrain, yTest = sk.model_selection.train_test_split(X,y,test_size=.33,random_state= 16)
+rgr = svm.SVC(kernel='linear').fit(XTrain,yTrain)
+rgr.score(XTest,yTest)
 # %%
 # Saved in a pickle
-pickle.dump(rgr,open('model.pkl', 'wb'))
+pickle.dump(rgr,open('impressModel.pkl', 'wb'))
 
+# %%
+# Really what we are looking for is sales though
+
+X = df.drop(["Quantity sold",
+             "Non-promoted"],axis=1) 
+y = df["Quantity sold"]
+
+
+
+# We have to scaling lets start with a normalization method
+# Changed to an array type
+scaler = sk.preprocessing.Normalizer().fit(X)
+XNorm = scaler.transform(X)
+# %%
+# Regression model
+regression = feature_selection.r_regression(XNorm,y)
+# Interesting. Quantity availible is bad. Promoted > organic, but being promoted lowers your chances
+# This is probably due to the low amount of non promoted
+# %%
+# Going to use a random over sample because it is easy to even out dataset
+oversample = RandomOverSampler()
+X, y = oversample.fit_resample(X,y)
+XNorm = scaler.transform(X)
+normRegression = feature_selection.r_regression(XNorm,y)
+regression = feature_selection.r_regression(X,y)
+# %%
+# Time to train
+XTrain, XTest, yTrain, yTest = sk.model_selection.train_test_split(X,y,test_size=.33,random_state= 16)
+rgr = svm.SVC(kernel='linear').fit(XTrain,yTrain)
+rgr.score(XTest,yTest)
+ # %%
+# Saved in a pickle
+pickle.dump(rgr,open('salesModel.pkl', 'wb'))
