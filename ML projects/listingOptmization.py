@@ -7,10 +7,11 @@ import altair as alt
 from sklearn import feature_selection
 from imblearn.over_sampling import RandomOverSampler
 from sklearn import svm
+import pickle
 # %%
 # Got to read in data and clean it
 # First six rows are user information we want to exclude that. It also doesn't include headings
-df = pd.read_csv("C:\git\Portfolio\ML projects\eBay-ListingsTrafficReport-Feb-06-2023-13_12_40-0700-1180243584 copy.csv",skiprows=5)
+df = pd.read_csv("C:\git\Portfolio\ML projects\eBay-ListingsTrafficReport-Feb-21-2023-10_57_28-0700-1291997234.csv",skiprows=5)
 
 # %%
 # We may also want to encode data types into our data to make it more numeric which is what the computer likes.
@@ -77,7 +78,7 @@ df = df.astype(int)
 # %%
 df = df.join(oneColumn)
 # %%
-#We should index the columns to give a unique identifier but the computer doesn't want it
+# We should index the columns to give a unique identifier but the computer doesn't want it
 # df['index'] = range(1, len(df) + 1)
 # Seperating our columns
 # impressions first we want to drop anything that has a direct connection to impressions
@@ -108,10 +109,12 @@ regression = feature_selection.r_regression(XNorm,y)
 oversample = RandomOverSampler()
 X, y = oversample.fit_resample(X,y)
 XNorm = scaler.transform(X)
-regression = feature_selection.r_regression(XNorm,y)
+regression = feature_selection.r_regression(X,y)
 # %%
 # Time to train
-XTrain, XTest, yTrain, yTest = sk.model_selection.train_test_split(X,y,test_size=.33,random_state= 16)
-clf = svm.SVC(kernel='linear', C=1).fit(XTrain, yTrain)
-clf.score(XTest,yTest)
+rgr = svm.SVC(kernel='rbf', C=1).fit(X,y)
+
 # %%
+# Saved in a pickle
+pickle.dump(rgr,open('model.pkl', 'wb'))
+
