@@ -114,11 +114,11 @@ regression = feature_selection.r_regression(X,y)
 # %%
 # Time to train
 XTrain, XTest, yTrain, yTest = sk.model_selection.train_test_split(X,y,test_size=.33,random_state= 16)
-rgr = svm.SVC(kernel='linear').fit(XTrain,yTrain)
-rgr.score(XTest,yTest)
+#rgr = svm.SVC(kernel='linear').fit(XTrain,yTrain)
+#rgr.score(XTest,yTest)
 # %%
 # Saved in a pickle
-pickle.dump(rgr,open('impressModel.pkl', 'wb'))
+#pickle.dump(rgr,open('impressModel.pkl', 'wb'))
 
 # %%
 # Really what we are looking for is sales though

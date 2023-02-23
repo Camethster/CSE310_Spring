@@ -1,0 +1,1 @@
+I would love to work with this start up and grow with them as they continue in developing thier AI. I am a recent college graduate who has experience in Deep Learning, NPL, and Data Analytics. If you want to discuss more about the project I would love to talk about it. 

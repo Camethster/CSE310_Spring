@@ -29,16 +29,9 @@ oneColumn = pd.get_dummies(df["Current promoted listings status"])
 df.drop("Current promoted listings status",axis=1,inplace=True)
 df = df.astype(int)
 df = df.join(oneColumn)
-X = df.drop(["Total impressions on eBay site",
-             "Top 20 search slot impressions from promoted listings",
-             "Top 20 search slot organic impressions",
-             "Rest of search slot impressions",
-             "Non-search promoted listings impressions",
-             "Non-search organic impressions",
-             "Total promoted listings impressions (applies to eBay site only)",
-             "Total organic impressions on eBay site",
+X = df.drop(["Quantity sold",
              "Non-promoted"],axis=1) 
-y = df["Total impressions on eBay site"]
+y = df["Quantity sold"]
 scaler = sk.preprocessing.Normalizer().fit(X)
 XNorm = scaler.transform(X)
 regression = feature_selection.r_regression(XNorm,y)
@@ -49,6 +42,6 @@ X, y = oversample.fit_resample(X,y)
 XTrain, XTest, yTrain, yTest = sk.model_selection.train_test_split(X,y,test_size=.33,random_state= 16)
 # %%
 # Terrible Score 0.0
-savedRgr = pickle.load(open('model.pkl', 'rb'))
+savedRgr = pickle.load(open('salesModel.pkl', 'rb'))
 savedRgr.score(X,y)
 # %%
