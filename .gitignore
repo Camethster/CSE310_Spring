@@ -2,3 +2,6 @@
 **creds.json
 #Ignore Json gods
 **gods.json
+Smite/gods.json
+#Ignore Secret Key
+**secretKey.json
