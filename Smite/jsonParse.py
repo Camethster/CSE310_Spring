@@ -24,16 +24,15 @@ for atb in stats:
     for y in gods:
         prevLevel = y[atb]
         healthLevel = y[atb+"PerLevel"]
-        for x in range(1,20):
-            level = str(x+1)
-            y[atb] = prevLevel + healthLevel*x
+        for x in range(1,21):
+            level = str(x)
+            y["Level" + level + atb] = prevLevel + healthLevel*x
             prevLevel = y[atb]
-for y in gods:
-    for x in range(7,20):
-        level = str(x+1)
-        print("Speed")
-        print(y["Speed"])
-        y.pop("Speed")
+#for y in gods:
+ #   for x in range(7,20):
+  #      level = str(x+1)
+   #     print("Speed")
+    #    y.pop("Level" + level+ "Speed")
 
 # %%
 with open("parseGods.json", "w") as fp:
@@ -48,11 +47,10 @@ for x in stats:
 
 #%%
 for y in gods:
-    row = pd.DataFrame.from_dict({"name" : [y["Name"]], "role" : y["Roles"], "level" : int(1), "Health" : [y["Health"]],"AttackSpeed" : [y["AttackSpeed"]],"HP5" : [y["HP5"]],"MP5" : [y["MP5"]],"Mana" : [y["Mana"]],"PhysicalProtection" : [y["PhysicalProtection"]],"PhysicalPower" : [y["PhysicalPower"]],"MagicProtection" : [y["MagicProtection"]],"MagicalPower" : [y["MagicalPower"]]},orient="columns")
-    df = pd.concat([df,row],ignore_index=True)
-    for x in range(1,20):
-            level = str(1+x)
-            row = pd.DataFrame.from_dict({"name" : [y["Name"]], "role" : y["Roles"], "level" : level, "Health" : [y["Level"+level+"Health"]],"AttackSpeed" : [y["Level"+level+"AttackSpeed"]],"HP5" : [y["Level"+level+"HP5"]],"MP5" : [y["Level"+level+"MP5"]],"Mana" : [y["Level"+level+"Mana"]],"PhysicalProtection" : [y["Level"+level+"PhysicalProtection"]],"PhysicalPower" : [y["Level"+level+"PhysicalPower"]],"MagicProtection" : [y["Level"+level+"MagicProtection"]],"MagicalPower" : [y["Level"+level+"MagicalPower"]]},orient="columns")
+    for x in range(1,21):
+            print(x)
+            level = str(x)
+            row = pd.DataFrame.from_dict({"name" : [y["Name"]], "role" : [y["Roles"]], "level" : level, "Health" : [y["Level"+level+"Health"]],"AttackSpeed" : [y["Level"+level+"AttackSpeed"]],"HP5" : [y["Level"+level+"HP5"]],"MP5" : [y["Level"+level+"MP5"]],"Mana" : [y["Level"+level+"Mana"]],"PhysicalProtection" : [y["Level"+level+"PhysicalProtection"]],"PhysicalPower" : [y["Level"+level+"PhysicalPower"]],"MagicProtection" : [y["Level"+level+"MagicProtection"]],"MagicalPower" : [y["Level"+level+"MagicalPower"]]},orient="columns")
             df = pd.concat([df,row],ignore_index=True)
 
 
