@@ -1,7 +1,6 @@
 # %%
 import pandas as pd
 import numpy as np
-import Automunge as am
 import altair as alt
 import requests as rq
 import datetime
