@@ -19,7 +19,7 @@ languageCode = "1" #English
 baseUrl = "https://api.smitegame.com/smiteapi.svc"
 # %%
 # Need to create a session first
-offset = datetime.timedelta(hours=7)
+offset = datetime.timedelta(hours=6)
 stamp = datetime.datetime.now() + offset
 stamp = stamp.strftime("%Y%m%d%H%M%S")
 baseAuth = devId + "createsession" + authKey + stamp
@@ -36,8 +36,7 @@ call = input("Call.")
 baseSign = devId + call + authKey + stamp
 signature =  baseSign.encode()
 signature = hashlib.md5(signature)
-response = rq.get(baseUrl + "/" + call + "json/" + devId + "/" + signature.hexdigest() + "/" + sessionId + "/" + stamp)
-# "/" + languageCode
+response = rq.get(baseUrl + "/" + call + "json/" + devId + "/" + signature.hexdigest() + "/" + sessionId + "/" + stamp + "/" + languageCode)
 # %%
 response.status_code
 response.text
@@ -45,7 +44,7 @@ responseJson = response.json()
 # %%
 session.close()
 # %%
-with open("top20.json", "w") as outfile:
+with open(call + ".json", "w") as outfile:
     json.dump(responseJson, outfile)
 
 # %%
